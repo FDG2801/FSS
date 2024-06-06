@@ -6,6 +6,7 @@ from .transform import Compose, RandomScale, RandomCrop, RandomHorizontalFlip, T
     CenterCrop, Resize, RandomResizedCrop, ColorJitter, PadCenterCrop
 import random
 from .utils import Subset, MyImageFolder, RandomDataset
+from .isic import ISICDataset
 
 TRAIN_CV = 0.8
 
@@ -34,14 +35,17 @@ def get_dataset(opts, task, train=True):
             transform.Normalize(mean=[0.485, 0.456, 0.406],
                                 std=[0.229, 0.224, 0.225]),
         ])
-    elif opts.dataset == 'voc' or 'coco' in opts.dataset:
+    elif opts.dataset == 'voc' or 'coco' or 'isic' in opts.dataset:
         if opts.dataset == 'voc':
             dataset = VOCFSSDataset
-        else:
-            if 'stuff' in opts.dataset:
-                dataset = COCOStuffFSS
+        else:   
+            if opts.dataset == 'isic': 
+                dataset = ISICDataset
             else:
-                dataset = COCOFSS
+                if 'stuff' in opts.dataset:
+                    dataset = COCOStuffFSS
+                else:
+                    dataset = COCOFSS
 
         train_transform = Compose([
             RandomScale((0.5, 2)),

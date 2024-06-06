@@ -57,7 +57,7 @@ class VOCSegmentation(data.Dataset):
         self.root = osp.expanduser(root)
         self.transform = transform
 
-        voc_root = osp.join(self.root, "voc/dataset/")
+        voc_root = osp.join(self.root, "voc/dataset/PascalVOC12/")
         splits_dir = osp.join(self.root, "voc/split/")
 
         if not osp.isdir(voc_root):
@@ -73,8 +73,8 @@ class VOCSegmentation(data.Dataset):
         if coco_labels:
             annotation_folder = "annotations_coco"
         else:
-            annotation_folder = "annotations"
-        self.images = [(osp.join(voc_root, "images", i + ".jpg"), osp.join(voc_root, annotation_folder, i + ".png"))
+            annotation_folder = "SegmentationClassAug"
+        self.images = [(osp.join(voc_root, "JPEGImages", i + ".jpg"), osp.join(voc_root, annotation_folder, i + ".png"))
                        for i in self.images]
 
     @property

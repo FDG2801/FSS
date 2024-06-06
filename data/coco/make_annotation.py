@@ -4,8 +4,8 @@ import os
 import os.path as osp
 from tqdm import tqdm
 
-orig_path = '.'  # insert here the source path where original COCO annotations are
-dest_path = '.'  # and the destination folder
+orig_path = '/content'  # insert here the source path where original COCO annotations are
+dest_path = './content/FSS/data/coco'  # and the destination folder
 
 for split in ["train2017", "val2017"]:
     annotations = f"{orig_path}/annotations/{split}"

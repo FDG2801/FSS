@@ -60,7 +60,7 @@ def get_argparser():
     parser = argparse.ArgumentParser()
 
     # Performance Options
-    parser.add_argument("--local_rank", type=int, default=0)
+    parser.add_argument("--local-rank", type=int, default=0)
     parser.add_argument("--random_seed", type=int, default=42,
                         help="random seed (default: 42)")
     parser.add_argument("--num_workers", type=int, default=2,
@@ -72,7 +72,7 @@ def get_argparser():
     parser.add_argument("--data_root", type=str, default="data",
                         help="path to Dataset")
     parser.add_argument("--dataset", type=str, default='voc',
-                        choices=['voc', 'coco', 'coco-stuff'], help='Name of dataset')
+                        choices=['voc', 'coco', 'coco-stuff','isic'], help='Name of dataset')
 
     # Task Options
     parser.add_argument("--step", type=int, default=0,

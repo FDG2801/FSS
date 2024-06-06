@@ -107,3 +107,6 @@ venv.bak/
 .idea/
 /logs/results/
 /logs/results_frank/
+
+#Dataset
+/data/isic_tiny

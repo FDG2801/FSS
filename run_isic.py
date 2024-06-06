@@ -19,6 +19,10 @@ from methods import get_method
 import time
 from torchvision.datasets import VOCSegmentation
 
+#File isic paths:
+csv_file = 'path/to/your/ISIC/csvfile.csv'
+imgs_path = 'path/to/your/ISIC/images'
+labels_path = 'path/to/your/ISIC/labels'
 
 def save_ckpt(path, model, epoch):
     """ save current model
@@ -118,6 +122,9 @@ def main(opts):
     random.seed(opts.random_seed)
 
     train_dst, val_dst, train_dst_no_aug = get_dataset(opts, task, train=True)
+    # Crea il dataset
+    train_dataset = ISICDataset(csv=csv_file, imgs_path=imgs_path, labels_path=labels_path, transform=train_transform, training=True)
+    val_dataset = ISICDataset(csv=csv_file, imgs_path=imgs_path, labels_path=labels_path, transform=val_transform, training=False)
     # train_dst = VOCSegmentation("./", image_set="train", download=True)
     # val_dst = VOCSegmentation("./", image_set="test", download=True)
     logger.info(f"Dataset: {opts.dataset}, Train set: {len(train_dst)}, Val set: {len(val_dst)}")
